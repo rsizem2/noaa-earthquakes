@@ -21,11 +21,14 @@ library(devtools)
 install_github("rizem2/noaa-earthquakes")
 ```
 
-# Example
+# Examples
+
+Loading the relevant packages for these examples:
 
 ``` r
 library(earthquakes)
 library(tidyverse)
+library(leaflet)
 ```
 
 ## Reading Data
@@ -58,8 +61,7 @@ data %>%
 
 ## Timeline Geom
 
-Visualize deadly earthquakes in 3 different countries on a timeline
-using ggplot2 layers:
+Plot a timeline of deadly earthquakes in 3 different countries:
 
 ``` r
 data %>% dplyr::filter(YEAR > 1999,
@@ -75,11 +77,11 @@ data %>% dplyr::filter(YEAR > 1999,
 
 ## Annotated Timeline
 
-Two most deadly Earthquakes in the Japan since 2000:
+Label the 5 most deadly earthquakes in the Japan since 1900:
 
 ``` r
 data %>% dplyr::filter(COUNTRY == "JAPAN", 
-                              YEAR > 1900) %>%
+                              YEAR >= 1900) %>%
   ggplot2::ggplot(aes(x = DATE,
                       y = COUNTRY,
                       size = MAG,
@@ -94,8 +96,9 @@ data %>% dplyr::filter(COUNTRY == "JAPAN",
 
 ## Basic Leaflet Map
 
+Plot the epicenters on a leaflet map:
+
 ``` r
-library(leaflet)
 data %>% 
   dplyr::filter(COUNTRY == "MEXICO", 
                 YEAR >= 2000) %>% 
@@ -105,6 +108,8 @@ data %>%
 <img src="eq_map.png" width="100%" />
 
 ## Fancier Labels
+
+Leaflet maps with more information included in the popups:
 
 ``` r
 data %>% 
