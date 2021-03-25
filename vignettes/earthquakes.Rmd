@@ -29,7 +29,6 @@ Loading the relevant packages for these examples:
 
 ```{r, packages}
 library(earthquakes)
-library(tidyverse)
 library(leaflet)
 ```
 
