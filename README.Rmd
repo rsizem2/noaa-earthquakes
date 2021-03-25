@@ -101,7 +101,7 @@ data %>%
 ```
 
 ```{r basicmap1, echo=FALSE, out.width = '100%'}
-knitr::include_graphics(file.path("img","eq_map.png"))
+knitr::include_graphics(file.path("man","figures","eq_map.png"))
 ```
 
 ## Fancier Labels
@@ -117,5 +117,5 @@ data %>%
 ```
 
 ```{r fancymap1, echo=FALSE, out.width = '100%'}
-knitr::include_graphics(file.path("img","eq_create_label.png"))
+knitr::include_graphics(file.path("man","figures","eq_create_label.png"))
 ```

@@ -105,7 +105,7 @@ data %>%
   eq_map(annot_col = "DATE")
 ```
 
-<img src="img/eq_map.png" width="100%" />
+<img src="man/figures/eq_map.png" width="100%" />
 
 ## Fancier Labels
 
@@ -119,4 +119,4 @@ data %>%
   eq_map(annot_col = "popup_text")
 ```
 
-<img src="img/eq_create_label.png" width="100%" />
+<img src="man/figures/eq_create_label.png" width="100%" />
