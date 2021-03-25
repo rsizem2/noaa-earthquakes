@@ -1,38 +1,29 @@
 ---
-output: github_document
-always_allow_html: true
+title: "earthquakes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{earthquakes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
   message = FALSE,
   warning = FALSE,
+  collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
   out.width = "100%"
 )
 ```
 
-# README
-
-<!-- badges: start -->
-[![Travis build status](https://travis-ci.com/rsizem2/noaa-earthquakes.svg?branch=master)](https://travis-ci.com/rsizem2/noaa-earthquakes)
-<!-- badges: end -->
-
-This repository contains an R package for working with data from the [NCEI/WDS Global Significant Earthquake Database](https://www.ngdc.noaa.gov/hazel/view/hazards/earthquake/search). This package is a work in progress and not ready for use at the moment.
-
-
-# Installation
-
-```{r, eval = FALSE}
-library(devtools)
-install_github("rizem2/noaa-earthquakes")
+```{r setup}
+library(earthquakes)
 ```
 
-# Examples
+This vignette uses the same examples as the GitHub README file.
+
+# Using this Package
 
 Loading the relevant packages for these examples:
 
@@ -62,7 +53,7 @@ data %>%
 
 Plot a timeline of deadly earthquakes in 3 different countries:
 
-```{r, timeline}
+```{r, timeline, eval = FALSE}
 data %>% dplyr::filter(YEAR > 1999,
                        COUNTRY %in% c("JAPAN", "CHINA","NEPAL")) %>%
     ggplot2::ggplot() +
@@ -72,11 +63,15 @@ data %>% dplyr::filter(YEAR > 1999,
                       color = TOTAL_DEATHS))
 ```
 
+```{r timeline1, echo=FALSE, out.width = '100%'}
+knitr::include_graphics(file.path("..","man","figures","README-timeline-1.png"))
+```
+
 ## Annotated Timeline
 
 Label the 5 most deadly earthquakes in the Japan since 1900:
 
-```{r, timelinelabel}
+```{r, timelinelabel, eval = FALSE}
 data %>% dplyr::filter(COUNTRY == "JAPAN", 
                               YEAR >= 1900) %>%
   ggplot2::ggplot(aes(x = DATE,
@@ -87,6 +82,10 @@ data %>% dplyr::filter(COUNTRY == "JAPAN",
                       mag = MAG)) +
   geom_timeline() +
   geom_timeline_label(aes(n_max = 5))
+```
+
+```{r timelinelabel1, echo=FALSE, out.width = '100%'}
+knitr::include_graphics(file.path("..","man","figures","README-timelinelabel-1.png"))
 ```
 
 ## Basic Leaflet Map
@@ -101,7 +100,7 @@ data %>%
 ```
 
 ```{r basicmap1, echo=FALSE, out.width = '100%'}
-knitr::include_graphics(file.path("img","eq_map.png"))
+knitr::include_graphics(file.path("..","img","eq_map.png"))
 ```
 
 ## Fancier Labels
@@ -117,5 +116,5 @@ data %>%
 ```
 
 ```{r fancymap1, echo=FALSE, out.width = '100%'}
-knitr::include_graphics(file.path("img","eq_create_label.png"))
+knitr::include_graphics(file.path("..","img","eq_create_label.png"))
 ```
