@@ -58,15 +58,18 @@ eq_map <- function(data, annot_col = "DATE") {
 #'
 #' @export
 eq_create_label <- function(data) {
+    if(all(c("REGION","TOTAL_DEATHS","MAG") %in% colnames(data))){
+        loc  <- stringr::str_c("<b>Location:</b>", data[["REGION"]],"<br>") %>%
+            stringr::str_replace_na("")
 
-    loc  <- stringr::str_c("<b>Location:</b>", data[["REGION"]],"<br>") %>%
-        stringr::str_replace_na("")
+        mag <- stringr::str_c("<b>Magnitude:</b>", data[["MAG"]],"<br>") %>%
+            stringr::str_replace_na("")
 
-    mag <- stringr::str_c("<b>Magnitude:</b>", data[["MAG"]],"<br>") %>%
-        stringr::str_replace_na("")
+        dead <- stringr::str_c("<b>Total Deaths:</b>", data[["TOTAL_DEATHS"]],"<br>") %>%
+            stringr::str_replace_na("")
 
-    dead <- stringr::str_c("<b>Total Deaths:</b>", data[["TOTAL_DEATHS"]],"<br>") %>%
-        stringr::str_replace_na("")
-
-    stringr::str_c(location, magnitude, deaths)
+        stringr::str_c(loc, mag, dead)
+    } else {
+        stop("Missing columns needed to generate labels")
+        }
 }
