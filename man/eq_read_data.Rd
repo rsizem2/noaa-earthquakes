@@ -4,7 +4,13 @@
 \alias{eq_read_data}
 \title{Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.}
 \usage{
-eq_read_data()
+eq_read_data(
+  filename = system.file("extdata", "earthquakes-2021-03-08_17-02-58_-0500.tsv",
+    package = "earthquakes")
+)
+}
+\arguments{
+\item{filename}{path to datafile}
 }
 \value{
 dataframe

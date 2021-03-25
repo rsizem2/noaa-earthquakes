@@ -2,15 +2,17 @@
 #'
 #' @return dataframe
 #'
+#' @param filename path to datafile
+#'
 #' @importFrom readr read_tsv
 #' @importFrom magrittr %>%
 #' @importFrom dplyr rename select slice n
 #'
 #' @export
 
-eq_read_data <- function(){
-    data <- readr::read_tsv(system.file("extdata","earthquakes-2021-03-08_17-02-58_-0500.tsv",
-                                package = "earthquakes")) %>%
+eq_read_data <- function(filename = system.file("extdata","earthquakes-2021-03-08_17-02-58_-0500.tsv",
+                                                package = "earthquakes")){
+    data <- readr::read_tsv(filename) %>%
         dplyr::slice(2:dplyr::n()) %>%
         dplyr::rename(Year = Year,
                       Month = Mo,
@@ -29,6 +31,8 @@ eq_read_data <- function(){
 #'
 #' @return dataframe
 #'
+#' @param data dataframe object
+#'
 #' @importFrom stringr str_locate str_split
 #' @importFrom magrittr %>%
 #' @importFrom dplyr as_tibble mutate select if_else
@@ -37,8 +41,10 @@ eq_read_data <- function(){
 #'
 #' @export
 
-eq_location_clean <- function(){
-    data <- eq_read_data()
+eq_location_clean <- function(data = NULL){
+    if(is.null(data)){
+        data <- eq_read_data()
+    }
     temp <- stringr::str_split(data$LOCATION, ":", n = 2, simplify = TRUE) %>%
         dplyr::as_tibble()
     colnames(temp) <- c("COUNTRY","REGION")
@@ -69,8 +75,11 @@ eq_location_clean <- function(){
 #'
 #' @export
 
-eq_clean_data <- function(rawdata){
-    rawdata <- eq_location_clean() %>%
+eq_clean_data <- function(rawdata = NULL){
+    if(is.null(rawdata)){
+        rawdata <- eq_location_clean()
+    }
+    rawdata <- rawdata %>%
         dplyr::mutate(MONTH = tidyr::replace_na(MONTH,1),
                       DAY = tidyr::replace_na(DAY,1),
                       TSUNAMI = dplyr::if_else(is.na(TSUNAMI), FALSE, TRUE),

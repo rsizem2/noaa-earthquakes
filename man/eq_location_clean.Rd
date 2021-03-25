@@ -4,7 +4,10 @@
 \alias{eq_location_clean}
 \title{Formats the LOCATION column correctly, removing redundant COUNTRY/REGION information.}
 \usage{
-eq_location_clean()
+eq_location_clean(data = NULL)
+}
+\arguments{
+\item{data}{dataframe object}
 }
 \value{
 dataframe
