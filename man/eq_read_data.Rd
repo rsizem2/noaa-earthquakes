@@ -18,3 +18,13 @@ dataframe
 \description{
 Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
 }
+\examples{
+
+\dontrun{
+
+# Retrieve all earthquake data from 2020
+data <- eq_read_data() \%>\%
+           dplyr::filter(YEAR == 2020)
+}
+
+}

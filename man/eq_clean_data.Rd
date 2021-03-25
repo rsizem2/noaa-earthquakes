@@ -4,11 +4,24 @@
 \alias{eq_clean_data}
 \title{Cleans and formats the rawdata}
 \usage{
-eq_clean_data(rawdata)
+eq_clean_data(rawdata = NULL)
 }
 \arguments{
 \item{rawdata}{dataframe returned from `eq_read_data` function}
 }
 \description{
 Cleans and formats the rawdata
+}
+\examples{
+
+\dontrun{
+
+# Clean data and filter out entries with no TOTAL_DEATHS data
+data <- eq_clean_data() \%>\%
+    dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+    dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+    tidyr::drop_na()
+}
+
+
 }

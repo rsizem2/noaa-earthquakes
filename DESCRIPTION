@@ -15,10 +15,12 @@ Imports:
     leaflet,
     lubridate,
     magrittr,
+    qpdf,
     readr,
     rlang,
     scales,
     stringr,
+    tibble,
     tidyr
 Suggests: 
     rmarkdown,

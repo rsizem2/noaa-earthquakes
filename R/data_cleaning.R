@@ -1,3 +1,10 @@
+# Define global variables
+
+utils::globalVariables(c("COUNTRY","DAY","Dy","HOUR","Hr","LOCATION","MINUTE",
+                         "MONTH","Mn","Mo","OFFSET","REGION","SECOND","Sec",
+                         "TSUNAMI","Tsu","VOLCANO","Vol","YEAR","Year"))
+
+
 #' Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
 #'
 #' @return dataframe
@@ -7,6 +14,15 @@
 #' @importFrom readr read_tsv
 #' @importFrom magrittr %>%
 #' @importFrom dplyr rename select slice n
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Retrieve all earthquake data from 2020
+#' data <- eq_read_data() %>%
+#'            dplyr::filter(YEAR == 2020)
+#' }
 #'
 #' @export
 
@@ -24,7 +40,7 @@ eq_read_data <- function(filename = system.file("extdata","earthquakes-2021-03-0
                       Volcano = Vol,
                       Location = "Location Name")
     colnames(data) <- gsub(" ", "_", toupper(colnames(data)))
-    data <- data %>% dplyr::select(-contains("DESCRIPTION"))
+    data <- data %>% dplyr::select(-dplyr::contains("DESCRIPTION"))
 }
 
 #' Formats the LOCATION column correctly, removing redundant COUNTRY/REGION information.
@@ -37,7 +53,14 @@ eq_read_data <- function(filename = system.file("extdata","earthquakes-2021-03-0
 #' @importFrom magrittr %>%
 #' @importFrom dplyr as_tibble mutate select if_else
 #'
+#' @examples
 #'
+#' \dontrun{
+#'
+#' # Retrieve all earthquake data for Japan since 2000
+#' data <- eq_read_data() %>%
+#'            filter(COUNTRY == "JAPAN", YEAR >= 2000)
+#' }
 #'
 #' @export
 
@@ -71,6 +94,17 @@ eq_location_clean <- function(data = NULL){
 #' @importFrom magrittr %>%
 #' @importFrom tidyr replace_na
 #' @importFrom stringr str_pad
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # Clean data and filter out entries with no TOTAL_DEATHS data
+#' data <- eq_clean_data() %>%
+#'     dplyr::filter(!is.na(TOTAL_DEATHS)) %>%
+#'     dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) %>%
+#'     tidyr::drop_na()
+#' }
 #'
 #'
 #' @export
