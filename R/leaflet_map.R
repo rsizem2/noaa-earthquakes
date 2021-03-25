@@ -17,8 +17,11 @@
 #'
 #' # Full example.
 #' eq_clean_data() %>%
-#'    dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
-#'    eq_map()
+#'       dplyr::filter(!is.na(TOTAL_DEATHS)) %>%
+#'       dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) %>%
+#'       tidyr::drop_na() %>%
+#'       dplyr::filter(COUNTRY == "MEXICO" & YEAR >= 2000) %>%
+#'       eq_map()
 #' }
 #'
 #'
@@ -51,9 +54,12 @@ eq_map <- function(data, annot_col = "DATE") {
 #'
 #' \dontrun{
 #' eq_clean_data() %>%
-#'  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
-#'  dplyr::mutate(popup_text = eq_create_label(.)) %>%
-#'  eq_map(annot_col = "popup_text")
+#'       dplyr::filter(!is.na(TOTAL_DEATHS)) %>%
+#'       dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) %>%
+#'       tidyr::drop_na() %>%
+#'       dplyr::filter(COUNTRY == "MEXICO" & YEAR >= 2000)  %>%
+#'       dplyr::mutate(popup_text = eq_create_label(.)) %>%
+#'       eq_map(annot_col = "popup_text")
 #' }
 #'
 #' @export

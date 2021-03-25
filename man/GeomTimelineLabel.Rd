@@ -16,18 +16,12 @@ This function creates a vertical lines and labels, for use with the GeomTimeline
 \examples{
 
 \dontrun{
-# All deadly earthquakes in Chili after 1900
 
+# All deadly earthquakes in JAPAN, CHINA and NEPAL since 2000
 data <- eq_clean_data() \%>\%
-
-    dplyr::filter(YEAR > 1900,
-                  COUNTRY == "CHILI") \%>\%
-
-    dplyr::select(DATE,
-                  COUNTRY,
-                  REGION,
-                   MAG,
-                   TOTAL_DEATHS)
+     dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+     dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+     tidyr::drop_na()
 
     ggplot2::ggplot() +
 

@@ -23,8 +23,11 @@ This function generates a leaflet map with circles at each earthquake's location
 
 # Full example.
 eq_clean_data() \%>\%
-   dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) \%>\%
-   eq_map()
+      dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+      dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+      tidyr::drop_na() \%>\%
+      dplyr::filter(COUNTRY == "MEXICO" & YEAR >= 2000) \%>\%
+      eq_map()
 }
 
 

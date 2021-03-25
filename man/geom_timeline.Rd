@@ -71,23 +71,17 @@ Wrapper for creating a GeomTimeline layer for ggplot2
 
 \dontrun{
 
-# All deadly earthquakes in Chili after 1900
-
- eq_clean_data() \%>\%
-
-    dplyr::filter(YEAR > 1900,
-                  COUNTRY == "CHILI") \%>\%
-
-    dplyr::select(DATE,
-                  COUNTRY,
-                  REGION,
-                   MAG,
-                   TOTAL_DEATHS)
+ # All deadly earthquakes in JAPAN, CHINA and NEPAL since 2000
+data <- eq_clean_data() \%>\%
+     dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+     dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+     tidyr::drop_na() \%>\%
+     dplyr::filter(YEAR > 1999, COUNTRY \%in\% c("JAPAN", "CHINA","NEPAL")) \%>\%
 
     ggplot2::ggplot(aes(x = DATE,
-                          y = COUNTRY,
-                          size = MAG,
-                          color = TOTAL_DEATHS)) +
+                        y = COUNTRY,
+                        size = MAG,
+                        color = TOTAL_DEATHS)) +
 
         geom_timeline()
 }

@@ -70,29 +70,19 @@ Wrapper for creating a GeomTimelineLabel layer for ggplot2
 \examples{
 
 \dontrun{
-# All deadly earthquakes in Chili after 1900
-
-eq_clean_data() \%>\%
-
-    dplyr::filter(YEAR > 1900,
-                  COUNTRY == "CHILI") \%>\%
-
-    dplyr::select(DATE,
-                  COUNTRY,
-                  REGION,
-                   MAG,
-                   TOTAL_DEATHS)) \%>\%
-
-    ggplot2::ggplot(aes(x = DATE,
-                        y = COUNTRY,
-                        size = MAG,
-                        color = TOTAL_DEATHS,
-                        label = REGION,
-                        mag = MAG)) +
-
-            geom_timeline() +
-
-            geom_timeline_label(aes(n_max = 3))
+ # All deadly earthquakes in JAPAN, CHINA and NEPAL since 2000
+data <- eq_clean_data() \%>\%
+     dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+     dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+     tidyr::drop_na() \%>\% dplyr::filter(COUNTRY == "JAPAN", YEAR >= 1900) \%>\%
+     ggplot2::ggplot(aes(x = DATE,
+                         y = COUNTRY,
+                         size = MAG,
+                         color = TOTAL_DEATHS,
+                         label = REGION,
+                         mag = MAG)) +
+                 geom_timeline() +
+                 geom_timeline_label(aes(n_max = 5))
 }
 
 }

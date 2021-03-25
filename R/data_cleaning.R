@@ -21,7 +21,9 @@ utils::globalVariables(c("COUNTRY","DAY","Dy","HOUR","Hr","LOCATION","MINUTE",
 #'
 #' # Retrieve all earthquake data from 2020
 #' data <- eq_read_data() %>%
-#'            dplyr::filter(YEAR == 2020)
+#'            dplyr::filter(YEAR == 2020) %>%
+#'            dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) %>%
+#'            tidyr::drop_na()
 #' }
 #'
 #' @export
@@ -59,7 +61,10 @@ eq_read_data <- function(filename = system.file("extdata","earthquakes-2021-03-0
 #'
 #' # Retrieve all earthquake data for Japan since 2000
 #' data <- eq_read_data() %>%
-#'            filter(COUNTRY == "JAPAN", YEAR >= 2000)
+#'            filter(COUNTRY == "JAPAN", YEAR >= 2000) %>%
+#'            dplyr::filter(!is.na(TOTAL_DEATHS)) %>%
+#'            dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) %>%
+#'            tidyr::drop_na()
 #' }
 #'
 #' @export

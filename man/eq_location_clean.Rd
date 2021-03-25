@@ -21,7 +21,10 @@ Formats the LOCATION column correctly, removing redundant COUNTRY/REGION informa
 
 # Retrieve all earthquake data for Japan since 2000
 data <- eq_read_data() \%>\%
-           filter(COUNTRY == "JAPAN", YEAR >= 2000)
+           filter(COUNTRY == "JAPAN", YEAR >= 2000) \%>\%
+           dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+           dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+           tidyr::drop_na()
 }
 
 }

@@ -19,18 +19,13 @@ Defines the GeomTimeline ggplot2 geom. It is recommended to use the geom_timelin
 \examples{
 
 \dontrun{
-# All deadly earthquakes in Chili after 1900
+# All deadly earthquakes in JAPAN, CHINA and NEPAL since 2000
 
 data <- eq_clean_data() \%>\%
-
-    dplyr::filter(YEAR > 1900,
-                  COUNTRY == "CHILI") \%>\%
-
-    dplyr::select(DATE,
-                  COUNTRY,
-                  REGION,
-                   MAG,
-                   TOTAL_DEATHS)
+     dplyr::filter(!is.na(TOTAL_DEATHS)) \%>\%
+     dplyr::select(DATE, YEAR, COUNTRY, REGION, LONGITUDE, LATITUDE, MAG, TOTAL_DEATHS) \%>\%
+     tidyr::drop_na() \%>\%
+     dplyr::filter(YEAR > 1999, COUNTRY \%in\% c("JAPAN", "CHINA","NEPAL"))
 
 # Plot Timeline
 
@@ -45,7 +40,8 @@ ggplot2::ggplot() +
                    position = 'identity',
                    show.legend = NA,
                    inherit.aes = TRUE,
-                   params = list(na.rm = FALSE))}
+                   params = list(na.rm = FALSE))
+ }
 
 }
 \keyword{datasets}
