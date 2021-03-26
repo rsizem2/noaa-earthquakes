@@ -161,10 +161,9 @@ GeomTimelineLabel <-
 
                      ggplot2::Geom,
 
-                     required_aes = c("x","label"),
+                     required_aes = c("x", "mag","label"),
 
                      optional_aes = c('y',
-                                      'mag',
                                       'color',
                                       'alpha',
                                       'n_max'),
