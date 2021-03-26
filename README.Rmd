@@ -22,17 +22,19 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.com/rsizem2/noaa-earthquakes.svg?branch=master)](https://travis-ci.com/rsizem2/noaa-earthquakes)
 <!-- badges: end -->
 
-This repository contains an R package for working with data from the [NCEI/WDS Global Significant Earthquake Database](https://www.ngdc.noaa.gov/hazel/view/hazards/earthquake/search). This package is a work in progress and not ready for use at the moment.
+This repository contains an R package for working with data from the [NCEI/WDS Global Significant Earthquake Database](https://www.ngdc.noaa.gov/hazel/view/hazards/earthquake/search). The main two functions it provides
 
 
 # Installation
+
+You can install this R package from GitHub using devtools:
 
 ```{r, eval = FALSE}
 library(devtools)
 install_github("rizem2/noaa-earthquakes")
 ```
 
-# Examples
+# Usage
 
 Loading the relevant packages for these examples:
 
@@ -42,9 +44,17 @@ library(tidyverse)
 library(leaflet)
 ```
 
-## Reading Data
+The functions provided with this package fall into 3 general categories: reading/cleaning data, creating ggplot2 layers, and generating leaflet maps.
 
-View the 10 most deadly earthquakes after the year 2000:
+## Reading/Cleaning Data
+
+This package comes with the raw data file `earthquakes-2021-03-08_17-02-58_-0500.tsv` taken directly from the NCEI database API along with three functions for reading and cleaning the raw data:
+
+* `eq_read_data` - reads a raw data file into a data frame and formats some of the columns. It takes a filepath as an argument indicating the raw data file to be read into R. If called with no arguments, it defaults to the supplied .tsv file.
+* `eq_location_clean` - splits the `LOCATION` column into a `COUNTRY` and `REGION` column. Takes a dataframe as an argument, presumably the output from `eq_read_data`. If called with no arguments, calls `eq_read_data`.
+* `eq_clean_data` - uses the raw `YEAR`,`MONTH`,`DAY` columns to form a `DATE` column using lubridate.  Takes a dataframe as an argument, presumably the output from `eq_location_clean`. If called with no arguments, calls `eq_location_clean` and returns a fully "cleaned" dataframe of the supplied raw data.
+
+Viewing the 10 most deadly earthquakes since the year 2000:
 
 ```{r, 20years}
 data <- eq_clean_data() %>% 
@@ -58,7 +68,13 @@ data %>%
 ```
 
 
-## Timeline Geom
+## Custom ggplot2 Layers
+
+The next two functions are used to add custom layers to ggplot
+
+### Timeline
+
+This package comes with a custom ggplot2 Geom `GeomTimeline` for visualizing Earthquake characteristics (such as Magnitude, Death Toll, Damages, etc.) on a timeline. To use this Geom, add a ggplot2 layer using the function `geom_timeline`.
 
 Plot a timeline of deadly earthquakes in 3 different countries:
 
@@ -72,9 +88,11 @@ data %>% dplyr::filter(YEAR > 1999,
                       color = TOTAL_DEATHS))
 ```
 
-## Annotated Timeline
+### Annotated Timeline
 
-Label the 5 most deadly earthquakes in the Japan since 1900:
+We can extend these visualizations even further by adding labels to our timelines using the `GeomTimelineLabel` Geom. Simply add another ggplot2 layer using the `geom_timeline_label` in conjunction with `geom_timeline`.
+
+Labeling the 5 most deadly earthquakes in the Japan since 1900:
 
 ```{r, timelinelabel}
 data %>% dplyr::filter(COUNTRY == "JAPAN", 
@@ -89,7 +107,9 @@ data %>% dplyr::filter(COUNTRY == "JAPAN",
   geom_timeline_label(aes(n_max = 5))
 ```
 
-## Basic Leaflet Map
+## Leaflet Maps
+
+The final two functions generate leaflet maps for visualizing earthquake epicenters on actual maps. The first function `eq_map` generates a leaflet map from a dataframe with columns `LONGITUDE`, `LATITUDE`, and `MAG`. `eq_map` takes one argument `annot_col` which denotes the column of the dataframe to be used for annotation, by default uses `DATE`.
 
 Plot the epicenters on a leaflet map:
 
@@ -104,9 +124,7 @@ data %>%
 knitr::include_graphics(file.path("man","figures","eq_map.png"))
 ```
 
-## Fancier Labels
-
-Leaflet maps with more information included in the popups:
+The function `eq_create_label` generates labels from the input dataframe. We can use `eq_create_label` within `dplyr::mutate` to  modify the input dataframe by creating a column to store the desired pop-up text as an HTML string. The generated pop-ups will display the location, magnitude and total death count (if available) for any given earthquake.
 
 ```{r, fancymap, eval = FALSE}
 data %>% 
