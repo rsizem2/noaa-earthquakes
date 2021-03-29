@@ -116,7 +116,9 @@ timelines using the `GeomTimelineLabel` Geom. Simply add another ggplot2
 layer using the `geom_timeline_label` in conjunction with
 `geom_timeline`.
 
-Labeling the 5 most deadly earthquakes in the Japan since 1900:
+Labeling the 5 most deadly earthquakes (6 are shown since 5th is “tied”)
+in the Japan since 1900, note that the column we use for labeling is
+indicated by the `mag` aesthetic:
 
 ``` r
 data %>% dplyr::filter(COUNTRY == "JAPAN", 
@@ -126,7 +128,7 @@ data %>% dplyr::filter(COUNTRY == "JAPAN",
                       size = MAG,
                       color = TOTAL_DEATHS,
                       label = REGION,
-                      mag = MAG)) +
+                      mag = TOTAL_DEATHS)) +
   geom_timeline() +
   geom_timeline_label(aes(n_max = 5))
 ```
