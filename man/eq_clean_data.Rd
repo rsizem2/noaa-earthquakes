@@ -2,15 +2,15 @@
 % Please edit documentation in R/data_cleaning.R
 \name{eq_clean_data}
 \alias{eq_clean_data}
-\title{Cleans and formats the rawdata}
+\title{Takes the output from \code{\link{eq_location_clean}}, expects TSUNAMI, VOLCANO, YEAR, MONTH, DAY, HOUR, MINUTE, and SECOND columns.}
 \usage{
 eq_clean_data(rawdata = NULL)
 }
 \arguments{
-\item{rawdata}{dataframe returned from `eq_read_data` function}
+\item{rawdata}{optional, dataframe outputted from \code{\link{eq_read_data}} or \code{\link{eq_location_clean}}}
 }
 \description{
-Cleans and formats the rawdata
+Takes the output from \code{\link{eq_location_clean}}, expects TSUNAMI, VOLCANO, YEAR, MONTH, DAY, HOUR, MINUTE, and SECOND columns.
 }
 \examples{
 

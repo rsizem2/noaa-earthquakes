@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeline_plot.R
 \name{geom_timeline_label}
 \alias{geom_timeline_label}
-\title{Wrapper for creating a GeomTimelineLabel layer for ggplot2}
+\title{Wrapper for creating a \code{GeomTimelineLabel} layer for ggplot2. See \code{\link{GeomTimelineLabel}}.}
 \usage{
 geom_timeline_label(
   mapping = NULL,
@@ -65,7 +65,7 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 A ggplot2 GeomTimelineLabel layer
 }
 \description{
-Wrapper for creating a GeomTimelineLabel layer for ggplot2
+Wrapper for creating a \code{GeomTimelineLabel} layer for ggplot2. See \code{\link{GeomTimelineLabel}}.
 }
 \examples{
 

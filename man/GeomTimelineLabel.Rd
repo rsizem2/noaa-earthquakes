@@ -3,7 +3,7 @@
 \docType{data}
 \name{GeomTimelineLabel}
 \alias{GeomTimelineLabel}
-\title{This function creates a vertical lines and labels, for use with the GeomTimeline layer.}
+\title{Defines the GeomTimelineLabel ggplot2 geom, which draw line markers and text. Use \code{\link{geom_timeline_label}} to add a GeomTimelineLabel layer to ggplot. TherRequired aesthetic \code{x} specifies where to place a marker, the second required aesthetic \code{mag} determines what quantity is used from the input data to determine which observations are marked, the final required aesthetic \code{label} determines which column in the input data to use for labels. The optional aeshetics \code{y}, \code{color}, and \code{alpha} determines the stratification, color, transparency respectively. The final optional aesthetic \code{n_max} determines how many markers to place.}
 \format{
 An object of class \code{GeomTimelineLabel} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 6.
 }
@@ -11,7 +11,7 @@ An object of class \code{GeomTimelineLabel} (inherits from \code{Geom}, \code{gg
 GeomTimelineLabel
 }
 \description{
-This function creates a vertical lines and labels, for use with the GeomTimeline layer.
+Defines the GeomTimelineLabel ggplot2 geom, which draw line markers and text. Use \code{\link{geom_timeline_label}} to add a GeomTimelineLabel layer to ggplot. TherRequired aesthetic \code{x} specifies where to place a marker, the second required aesthetic \code{mag} determines what quantity is used from the input data to determine which observations are marked, the final required aesthetic \code{label} determines which column in the input data to use for labels. The optional aeshetics \code{y}, \code{color}, and \code{alpha} determines the stratification, color, transparency respectively. The final optional aesthetic \code{n_max} determines how many markers to place.
 }
 \examples{
 

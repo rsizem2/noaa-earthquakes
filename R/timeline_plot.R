@@ -1,4 +1,4 @@
-#' Defines the GeomTimeline ggplot2 geom. It is recommended to use the geom_timeline function to create these layers.
+#' Defines the GeomTimeline ggplot2 geom. It is recommended to use the \code{geom_timeline} function to create these layers. The only required aesthetic is \code{x} which determines where along the line to place the circles. The optional aesthetics \code{color}, \code{size}, and \code{alpha} define the color, radius and transparency of the circle, and the optional aesthetic \code{y} can be used for making multiple stratified timelines.
 #'
 #' @importFrom ggplot2 ggproto aes draw_key_point Geom
 #' @importFrom grid circleGrob gpar
@@ -74,7 +74,7 @@ GeomTimeline <- ggplot2::ggproto(`_class` = "GeomTimeline",
                                      }
                                  )
 
-#' Wrapper for creating a GeomTimeline layer for ggplot2
+#' Wrapper for creating a \code{GeomTimeline} layer for ggplot2. See \code{\link{GeomTimeline}}.
 #'
 #' @importFrom ggplot2 layer
 #'
@@ -119,7 +119,7 @@ geom_timeline <- function(mapping = NULL,
                    params = list(na.rm = na.rm,...))
     }
 
-#' This function creates a vertical lines and labels, for use with the GeomTimeline layer.
+#' Defines the GeomTimelineLabel ggplot2 geom, which draw line markers and text. Use \code{\link{geom_timeline_label}} to add a GeomTimelineLabel layer to ggplot. TherRequired aesthetic \code{x} specifies where to place a marker, the second required aesthetic \code{mag} determines what quantity is used from the input data to determine which observations are marked, the final required aesthetic \code{label} determines which column in the input data to use for labels. The optional aeshetics \code{y}, \code{color}, and \code{alpha} determines the stratification, color, transparency respectively. The final optional aesthetic \code{n_max} determines how many markers to place.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
@@ -213,7 +213,7 @@ GeomTimelineLabel <-
                          grid::gTree(children = grid::gList(lines, texts))
                      })
 
-#' Wrapper for creating a GeomTimelineLabel layer for ggplot2
+#' Wrapper for creating a \code{GeomTimelineLabel} layer for ggplot2. See \code{\link{GeomTimelineLabel}}.
 #'
 #' @inheritParams ggplot2::geom_point
 #'

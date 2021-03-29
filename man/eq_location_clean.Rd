@@ -2,18 +2,18 @@
 % Please edit documentation in R/data_cleaning.R
 \name{eq_location_clean}
 \alias{eq_location_clean}
-\title{Formats the LOCATION column correctly, removing redundant COUNTRY/REGION information.}
+\title{Takes the output from \code{\link{eq_read_data}}, but will work on any data from with LOCATION column. Creates COUNTRY and REGION columns by splitting input from the LOCATION column which should contain strings of the form \code{"COUNTRY: REGION"} (e.g. \code{"JAPAN:TOKYO"}).}
 \usage{
 eq_location_clean(data = NULL)
 }
 \arguments{
-\item{data}{dataframe object}
+\item{data}{a dataframe or tibble with a LOCATION column}
 }
 \value{
 dataframe
 }
 \description{
-Formats the LOCATION column correctly, removing redundant COUNTRY/REGION information.
+Takes the output from \code{\link{eq_read_data}}, but will work on any data from with LOCATION column. Creates COUNTRY and REGION columns by splitting input from the LOCATION column which should contain strings of the form \code{"COUNTRY: REGION"} (e.g. \code{"JAPAN:TOKYO"}).
 }
 \examples{
 

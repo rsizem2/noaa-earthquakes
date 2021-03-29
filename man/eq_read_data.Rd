@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_cleaning.R
 \name{eq_read_data}
 \alias{eq_read_data}
-\title{Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.}
+\title{Reads in the raw data taken from the NCEI/WDS database. Expect tab-separated data with column names: Year, Mo, Dy, Hr, Mn, Sec, Tsu, Vol, and "Location Name". Renames some columns, drops some irrelevant columns and converts all column names to uppercase.}
 \usage{
 eq_read_data(
   filename = system.file("extdata", "earthquakes-2021-03-08_17-02-58_-0500.tsv",
@@ -10,13 +10,13 @@ eq_read_data(
 )
 }
 \arguments{
-\item{filename}{path to datafile}
+\item{filename}{a path to a file, a connection, or literal data (either a single string or a raw vector).}
 }
 \value{
 dataframe
 }
 \description{
-Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
+Reads in the raw data taken from the NCEI/WDS database. Expect tab-separated data with column names: Year, Mo, Dy, Hr, Mn, Sec, Tsu, Vol, and "Location Name". Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
 }
 \examples{
 

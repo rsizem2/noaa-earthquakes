@@ -3,7 +3,7 @@
 \docType{data}
 \name{GeomTimeline}
 \alias{GeomTimeline}
-\title{Defines the GeomTimeline ggplot2 geom. It is recommended to use the geom_timeline function to create these layers.}
+\title{Defines the GeomTimeline ggplot2 geom. It is recommended to use the \code{geom_timeline} function to create these layers. The only required aesthetic is \code{x} which determines where along the line to place the circles. The optional aesthetics \code{color}, \code{size}, and \code{alpha} define the color, radius and transparency of the circle, and the optional aesthetic \code{y} can be used for making multiple stratified timelines.}
 \format{
 An object of class \code{GeomTimeline} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 6.
 }
@@ -14,7 +14,7 @@ GeomTimeline
 Geom
 }
 \description{
-Defines the GeomTimeline ggplot2 geom. It is recommended to use the geom_timeline function to create these layers.
+Defines the GeomTimeline ggplot2 geom. It is recommended to use the \code{geom_timeline} function to create these layers. The only required aesthetic is \code{x} which determines where along the line to place the circles. The optional aesthetics \code{color}, \code{size}, and \code{alpha} define the color, radius and transparency of the circle, and the optional aesthetic \code{y} can be used for making multiple stratified timelines.
 }
 \examples{
 

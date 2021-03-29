@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeline_plot.R
 \name{geom_timeline}
 \alias{geom_timeline}
-\title{Wrapper for creating a GeomTimeline layer for ggplot2}
+\title{Wrapper for creating a \code{GeomTimeline} layer for ggplot2. See \code{\link{GeomTimeline}}.}
 \usage{
 geom_timeline(
   mapping = NULL,
@@ -65,7 +65,7 @@ to the paired geom/stat.}
 Creates a layer to plot the GeomTimeline output function.
 }
 \description{
-Wrapper for creating a GeomTimeline layer for ggplot2
+Wrapper for creating a \code{GeomTimeline} layer for ggplot2. See \code{\link{GeomTimeline}}.
 }
 \examples{
 

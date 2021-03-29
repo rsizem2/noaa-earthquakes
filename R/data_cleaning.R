@@ -5,11 +5,11 @@ utils::globalVariables(c("COUNTRY","DAY","Dy","HOUR","Hr","LOCATION","MINUTE",
                          "TSUNAMI","Tsu","VOLCANO","Vol","YEAR","Year"))
 
 
-#' Reads in the raw data from the `inst/extdata` directory. Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
+#' Reads in the raw data taken from the NCEI/WDS database. Expect tab-separated data with column names: Year, Mo, Dy, Hr, Mn, Sec, Tsu, Vol, and "Location Name". Renames some columns, drops some irrelevant columns and converts all column names to uppercase.
 #'
 #' @return dataframe
 #'
-#' @param filename path to datafile
+#' @param filename a path to a file, a connection, or literal data (either a single string or a raw vector).
 #'
 #' @importFrom readr read_tsv
 #' @importFrom magrittr %>%
@@ -45,11 +45,11 @@ eq_read_data <- function(filename = system.file("extdata","earthquakes-2021-03-0
     data <- data %>% dplyr::select(-dplyr::contains("DESCRIPTION"))
 }
 
-#' Formats the LOCATION column correctly, removing redundant COUNTRY/REGION information.
+#' Takes the output from \code{\link{eq_read_data}}, but will work on any data from with LOCATION column. Creates COUNTRY and REGION columns by splitting input from the LOCATION column which should contain strings of the form \code{"COUNTRY: REGION"} (e.g. \code{"JAPAN:TOKYO"}).
 #'
 #' @return dataframe
 #'
-#' @param data dataframe object
+#' @param data a dataframe or tibble with a LOCATION column
 #'
 #' @importFrom stringr str_locate str_split
 #' @importFrom magrittr %>%
@@ -89,10 +89,10 @@ eq_location_clean <- function(data = NULL){
 }
 
 
-#' Cleans and formats the rawdata
+#' Takes the output from \code{\link{eq_location_clean}}, expects TSUNAMI, VOLCANO, YEAR, MONTH, DAY, HOUR, MINUTE, and SECOND columns.
 #'
 #'
-#' @param rawdata dataframe returned from `eq_read_data` function
+#' @param rawdata optional, dataframe outputted from \code{\link{eq_read_data}} or \code{\link{eq_location_clean}}
 #'
 #' @importFrom dplyr rename mutate transmute if_else
 #' @importFrom lubridate ymd years

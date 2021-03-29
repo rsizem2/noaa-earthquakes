@@ -2,12 +2,12 @@
 % Please edit documentation in R/leaflet_map.R
 \name{eq_map}
 \alias{eq_map}
-\title{This function generates a leaflet map with circles at each earthquake's location.}
+\title{This function generates a leaflet map with circles at each earthquake's location. Should be used with the output of \code{\link{eq_location_clean}}, but will work with any dataframe with \code{DATE}, \code{LONGITUDE}, \code{LATITUDE} and \code{MAG} columns.}
 \usage{
 eq_map(data, annot_col = "DATE")
 }
 \arguments{
-\item{data}{dataframe with DATE, LONGITUDE, LATITUDE, and MAG columns.}
+\item{data}{dataframe with \code{DATE}, \code{LONGITUDE}, \code{LATITUDE} and \code{MAG} columns.}
 
 \item{annot_col}{character vector, indicating the column containing information to be displayed inside of the popup.}
 }
@@ -15,7 +15,7 @@ eq_map(data, annot_col = "DATE")
 A map with earthquakes as circles.
 }
 \description{
-This function generates a leaflet map with circles at each earthquake's location.
+This function generates a leaflet map with circles at each earthquake's location. Should be used with the output of \code{\link{eq_location_clean}}, but will work with any dataframe with \code{DATE}, \code{LONGITUDE}, \code{LATITUDE} and \code{MAG} columns.
 }
 \examples{
 
