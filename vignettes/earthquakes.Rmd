@@ -22,7 +22,7 @@ library(earthquakes)
 library(leaflet)
 ```
 
-This vignette briefly explains how to use each function defined in this package.
+This repository contains an R package for visualizing data from the [NCEI/WDS Global Significant Earthquake Database](https://www.ngdc.noaa.gov/hazel/view/hazards/earthquake/search). The functions provided with this package fall into 3 general categories: reading/cleaning data, creating ggplot2 layers, and generating leaflet maps. This vignette briefly explains how to use each function defined in this package. 
 
 # Reading and Cleaning Data
 

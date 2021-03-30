@@ -9,10 +9,13 @@
 status](https://travis-ci.com/rsizem2/noaa-earthquakes.svg?branch=master)](https://travis-ci.com/rsizem2/noaa-earthquakes)
 <!-- badges: end -->
 
-This repository contains an R package for working with data from the
+This repository contains an R package for visualizing data from the
 [NCEI/WDS Global Significant Earthquake
 Database](https://www.ngdc.noaa.gov/hazel/view/hazards/earthquake/search).
-The main two functions it provides
+The main functions it provides are for adding layers to ggplot where you
+can make a timeline showing the significant earthquakes across a given
+time period, and for generating leaflet maps showing the epicenters for
+significant earthquake events.
 
 # Installation
 
