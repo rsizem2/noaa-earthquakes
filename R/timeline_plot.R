@@ -4,7 +4,7 @@
 #' @importFrom grid circleGrob gpar
 #' @importFrom scales alpha
 #'
-#' @return Geom
+#' @return \code{Geom*} object for rendering timelines on plots
 #'
 #' @examples
 #'
@@ -80,7 +80,7 @@ GeomTimeline <- ggplot2::ggproto(`_class` = "GeomTimeline",
 #'
 #' @inheritParams ggplot2::geom_point
 #'
-#' @return Creates a layer to plot the GeomTimeline output function.
+#' @returns A ggplot2 layer containing a \code{\link{GeomTimeline}} object.
 #'
 #' @examples
 #'
@@ -119,14 +119,15 @@ geom_timeline <- function(mapping = NULL,
                    params = list(na.rm = na.rm,...))
     }
 
-#' Defines the GeomTimelineLabel ggplot2 geom, which draw line markers and text. Use \code{\link{geom_timeline_label}} to add a GeomTimelineLabel layer to ggplot. TherRequired aesthetic \code{x} specifies where to place a marker, the second required aesthetic \code{mag} determines what quantity is used from the input data to determine which observations are marked, the final required aesthetic \code{label} determines which column in the input data to use for labels. The optional aeshetics \code{y}, \code{color}, and \code{alpha} determines the stratification, color, transparency respectively. The final optional aesthetic \code{n_max} determines how many markers to place.
+#' Defines the GeomTimelineLabel ggplot2 geom, which draw line markers and text. Use \code{\link{geom_timeline_label}} to add a GeomTimelineLabel layer to ggplot. The required aesthetic \code{x} specifies where to place a marker, the second required aesthetic \code{mag} determines what quantity is used from the input data to determine which observations are marked, the final required aesthetic \code{label} determines which column in the input data to use for labels. The optional aesthetic \code{y}, \code{color}, and \code{alpha} determines the stratification, color, transparency respectively. The final optional aesthetic \code{n_max} determines how many markers to place.
 #'
 #' @importFrom magrittr %>%
-#' @importFrom rlang .data
 #' @importFrom ggplot2 ggproto aes draw_key_polygon Geom
 #' @importFrom grid textGrob gTree gpar gList segmentsGrob
 #' @importFrom dplyr slice_max
 #' @importFrom utils head
+#'
+#' @return \code{Geom*} object for marking and labeling timelines on plots
 #'
 #' @examples
 #'
@@ -219,7 +220,7 @@ GeomTimelineLabel <-
 #'
 #' @importFrom ggplot2 layer
 #'
-#' @return A ggplot2 GeomTimelineLabel layer
+#' @return A ggplot2 layer containing a \code{\link{GeomTimelineLabel}} object.
 #'
 #' @examples
 #'

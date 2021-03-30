@@ -62,7 +62,7 @@ to the paired geom/stat.}
 a warning. If \code{TRUE}, missing values are silently removed.}
 }
 \value{
-A ggplot2 GeomTimelineLabel layer
+A ggplot2 layer containing a \code{\link{GeomTimelineLabel}} object.
 }
 \description{
 Wrapper for creating a \code{GeomTimelineLabel} layer for ggplot2. See \code{\link{GeomTimelineLabel}}.

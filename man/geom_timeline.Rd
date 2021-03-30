@@ -62,7 +62,7 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 to the paired geom/stat.}
 }
 \value{
-Creates a layer to plot the GeomTimeline output function.
+A ggplot2 layer containing a \code{\link{GeomTimeline}} object.
 }
 \description{
 Wrapper for creating a \code{GeomTimeline} layer for ggplot2. See \code{\link{GeomTimeline}}.
